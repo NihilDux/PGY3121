@@ -10,24 +10,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
     <header>
         <nav>
-            <img src="logo.png" alt="Nou Nou" width="10%" height="10%">
-            <form class="d-flex" style="padding-bottom: 10px;">
-              <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-            <div>
-                <a href="index.html" class="active">Inicio</a>
-                <a href="#">Productos</a>
-                <a href="#">Servicios</a>
-                <a href="login.html">Iniciar Sesión</a>
-                <a href="registro.html">Registro</a>
-                <a href="#">Contacto</a>
-            </div>
+          <img src="logo.png" alt="Nou Nou" width="10%" height="10%">
+          <div>
+            <a href="index.html" class="active">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Servicios</a>
+            <a href="login.html">Iniciar Sesión</a>
+            <a href="registro.html">Registro</a>
+            <a href="#">Contacto</a>
+          </div>
+          <form class="d-flex" style="padding-bottom: auto;">
+            <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
         </nav>
     </header>
-    <form action="registro.php" method="post" style="background-color: #8a8989;">
+    <form action="registro.php" method="post" style="background-color: wheat;">
 		<label for="nombre">Nombre</label>
 		<input type="text" name="nombre" id="nombre" required placeholder="Ingrese su nombre" style="display:block;">
 		<label for="correo">Correo Electrónico</label>
@@ -36,6 +37,7 @@
 		<input type="password" name="contrasena" id="contrasena" required placeholder="Ingrese su contraseña" style="display:block;">
 		<input type="submit" value="Registrarse">
 	</form>
+</div>
 </body>
 <footer>
     <div style="display: block; margin: 25px;">
