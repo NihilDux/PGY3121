@@ -107,7 +107,7 @@ input[type="submit"]:hover {
     border: none;
 }
 
-body {
+/*body {
     margin: 0;
     padding: 0;
     font-family: montserrat;
@@ -215,4 +215,37 @@ input[type="submit"]:hover {
 }
 .signup_link a:hover {
     text-decoration: underline;
+}*/
+
+footer {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin: 0 30px;
+    color: black;
+}
+
+footer.bottom {
+    padding: 20px 0;
+    justify-content: space-between;
+}
+
+footer .legal {
+    font-size: 12px;
+    align-items: center;
+}
+
+footer .legal > a {
+    margin: 0 4px;
+    text-decoration: none;
+    color: black;
+}
+
+footer .legal > span {
+    margin-right: 10px;
+}
+
+footer.bottom .links {
+    display: flex;
+    gap: 18px;
 }

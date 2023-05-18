@@ -13,19 +13,22 @@
 <div class="container">
     <header>
         <nav>
-          <img src="logo.png" alt="Nou Nou" width="10%" height="10%">
+            <a href="index.html">
+                <img src="logo.png" width="50%" height="50%">
+            </a>
           <div>
             <a href="index.html" class="active">Inicio</a>
             <a href="#">Productos</a>
             <a href="#">Servicios</a>
-            <a href="login.html">Iniciar Sesión</a>
-            <a href="registro.html">Registro</a>
-            <a href="contacto.html">Contacto</a>
           </div>
-          <form class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
+          <div class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
             <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
+            <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
+          </div>
+          <div>
+            <a href="login.html">Iniciar Sesión</a>
+            <a href="registro.html" style="margin-right: 50px">Registrarse</a>
+          </div>
         </nav>
     </header>
     <main>
@@ -46,11 +49,13 @@
         </div>
     </main>
 </div>
-<footer>
-    <div style="display: block; margin: 25px;">
-        <br>
-        <p>@Derechos Reservados.</p>
+<footer class="bottom">
+    <div class="legal">
+        <span>© Todos los Derechos Reservados</span>
+        <a href="./licencia.html">Licencia</a>
+        <a href="./terminosycondiciones.html">Términos y Condiciones</a>
+        <a href="./privacidad.html">Privacidad</a>
     </div>
-</footer>
+  </footer>
 </body>
 </html>
