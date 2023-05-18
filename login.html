@@ -16,7 +16,7 @@
         -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
         -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
         -o-box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        background: red;
+        background: rgb(14, 119, 70);
         box-shadow: 0 0 10px rgba(0,0,0,0.3);
         color: #fff;
         display: none;
@@ -57,19 +57,19 @@
 <div class="container">
     <header>
         <nav>
-          <img src="logo.png" alt="Nou Nou" width="10%" height="10%">
+          <a href="index.html">
+            <img src="logo.png" width="50%" height="">
+          </a>
           <div>
             <a href="index.html" class="active">Inicio</a>
             <a href="#">Productos</a>
             <a href="#">Servicios</a>
-            <a href="login.html">Iniciar Sesión</a>
-            <a href="registro.html">Registro</a>
             <a href="contacto.html">Contacto</a>
           </div>
-          <form class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
+          <div class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
             <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
+            <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
+          </div>
         </nav>
     </header>
     <form action="login.php" method="POST" style="background-color: wheat;">
@@ -84,6 +84,9 @@
       <div id="mensaje2" class="error">Ingresa tu contraseña</div>
       </div>
       <input type="submit" id="enviar" value="Iniciar Sesión">
+      <div>
+        <a href="registro.html" style="text-decoration: none; color: rgb(14, 119, 70); font-weight: bold; font-size: 12px;">¿No tienes una cuenta?<p><span style="margin-left: 21px; font-size: 12px;">Registrate AQUÍ</span></p></a>
+      </div>
     </form>
     <!--
     <form action="login.php" method="POST" style="background-color: wheat;">
@@ -124,10 +127,12 @@
     </form>
   </div>
 </body>-->
-<footer>
-  <div style="display: block; margin: 25px;">
-    <br>
-    <p>@Derechos Reservados.</p>
+<footer class="bottom">
+  <div class="legal">
+      <span>© Todos los Derechos Reservados</span>
+      <a href="./licencia.html">Licencia</a>
+      <a href="./terminosycondiciones.html">Términos y Condiciones</a>
+      <a href="./privacidad.html">Privacidad</a>
   </div>
 </footer>
 </html>
