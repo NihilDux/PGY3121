@@ -12,21 +12,24 @@
 <body>
 <div class="container">
     <header>
-      <nav>
-        <img src="logo.png" alt="Nou Nou" width="10%" height="10%">
-        <div>
-          <a href="index.html" class="active">Inicio</a>
-          <a href="#">Productos</a>
-          <a href="#">Servicios</a>
-          <a href="login.html">Iniciar Sesión</a>
-          <a href="registro.html">Registro</a>
-          <a href="contacto.html">Contacto</a>
-        </div>
-        <form class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
-          <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
-      </nav>
+
+
+        <nav>
+          <a href="index.html">
+            <img src="logo.png" width="50%" height="50%">
+          </a>
+          <div>
+            <a href="index.html" class="active">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Servicios</a>
+            <a href="contacto.html">Contacto</a>
+          </div>
+          <div class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
+            <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
+          </div>
+        </nav>
+
     </header>
     <form action="registro.php" method="post" style="background-color: wheat;">
 		<label for="nombre">Nombre</label>
@@ -36,13 +39,18 @@
 		<label for="contrasena">Contraseña</label>
 		<input type="password" name="contrasena" id="contrasena" required placeholder="Ingrese su contraseña" style="display:block;">
 		<input type="submit" value="Registrarse">
+    <div>
+      <a href="login.html" style="text-decoration: none; color: rgb(14, 119, 70); font-weight: bold; font-size: 12px;">¿Ya tienes una cuenta?<p><span style="margin-left: 24px; font-size: 12px;">Haz click AQUÍ</span></p></a>
+    </div>
 	</form>
 </div>
 </body>
-<footer>
-  <div style="display: block; margin: 25px;">
-    <br>
-    <p>@Derechos Reservados.</p>
+<footer class="bottom">
+  <div class="legal">
+      <span>© Todos los Derechos Reservados</span>
+      <a href="./licencia.html">Licencia</a>
+      <a href="./terminosycondiciones.html">Términos y Condiciones</a>
+      <a href="./privacidad.html">Privacidad</a>
   </div>
 </footer>
 </html>
