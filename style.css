@@ -107,6 +107,22 @@ input[type="submit"]:hover {
     border: none;
 }
 
+/*MENSAJE ERROR (LOGIN)*/
+.error {
+        -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        -o-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        background: rgb(14, 119, 70);
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        color: #fff;
+        display: none;
+        font-size: 14px;
+        margin-top: -45px;
+        margin-left: 220px;
+        padding: 10px;
+        position:absolute;
+      }
+
 /*body {
     margin: 0;
     padding: 0;
