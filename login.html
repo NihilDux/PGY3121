@@ -16,25 +16,40 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <nav>
-          <a href="index.html">
-            <img src="logo.png" width="50%" height="">
-          </a>
-          <div>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="index.html" style="border: none;">
+        <img src="logo.png" width="50%" height="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
             <a href="index.html" class="active">Inicio</a>
-            <a href="#">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a href="productos.html">Productos</a>
+          </li>
+          <li class="nav-item">
             <a href="#">Servicios</a>
+          </li>
+          <li class="nav-item">
             <a href="contacto.html">Contacto</a>
-          </div>
-          <div class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
-            <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
-          </div>
-        </nav>
-    </header>
+          </li>
+        </ul>
+        <div class="d-flex" style="padding-bottom: auto; margin-left: 400px;">
+          <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
+        </div>
+      </div>
+    </nav>
+  </header>
     <form action="login.php" method="POST" style="background-color: wheat;">
       <div>
+      <br>
       <label for="email">Correo electrónico</label>
       <input type="text" id="email" name="email" required placeholder="Ingrese su correo electrónico" style="display:block;">
       <div id="mensaje1" class="error">Ingresa tu correo electrónico</div>
