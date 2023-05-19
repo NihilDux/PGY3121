@@ -126,6 +126,22 @@ input[type="submit"]:hover {
       .nav-item {
         margin-right: 5px;
       }
+
+      #dropdown a {
+        background-color: tan;
+        color:rgb(14, 119, 70);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        max-height: min-content;
+      }
+
+      #dropdown a:hover {
+        background-color: rgb(14, 119, 70);
+        color: white;
+      }
+
 /*body {
     margin: 0;
     padding: 0;
