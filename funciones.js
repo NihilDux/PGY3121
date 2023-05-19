@@ -1,4 +1,4 @@
-// FUNCION LOGIN (CON CORREO)
+// FUNCION/VALIDACION LOGIN (CON CORREO)
 var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 $(document).ready(function() {
 $("#enviar").click(function() {
@@ -21,20 +21,45 @@ $("#enviar").click(function() {
 });
 });
 
+// FUNCION/VALIDACION REGISTRO
+var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+var nombre = document.getElementById('nombre');
+var apellido = document.getElementById('apellido');
 var email = document.getElementById('email');
-var password = document.getElementById('password');
+var pass = document.getElementById('pass');
 var error = document.getElementById('error');
-error.style.color='red';
+//error.style.color='red';
 
 function enviarFormulario() {
     console.log('Enviando formulario...');
     var mensajeError =[];
-    if(email.value===null||email.value==='') {
-        mensajeError.push('DEBES INGRESAR TU CORREO ELECTRÓNICO');
+    if(nombre.value===null||nombre.value==='') {
+        $("#mensaje1").fadeIn();
+        return false;
+    } else {
+        $("#mensaje1").fadeOut();
     }
-    if(password.value===null||password.value==='') {
-        mensajeError.push('DEBES INGRESAR TU CONTRASEÑA');
+
+    if(apellido.value===null||apellido.value==='') {
+        $("#mensaje2").fadeIn();
+        return false;
+    } else {
+        $("#mensaje2").fadeOut();
     }
-    error.innerHTML=mensajeError.join(' - ');
+
+    if(email.value===null||email.value===''||!expr.test(email)) {
+        $("#mensaje3").fadeIn();
+        return false;
+    } else {
+        $("#mensaje3").fadeOut();
+    }
+
+    if(pass.value===null||pass.value==='') {
+        $("#mensaje4").fadeIn();
+        return false;
+    } else {
+        $("#mensaje4").fadeOut();
+    }
+    //error.innerHTML=mensajeError.join(' - ');
     return false;
 }
