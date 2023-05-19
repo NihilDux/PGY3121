@@ -12,7 +12,7 @@
 }
 
 .container img {
-    max-width: 100%;
+    max-width: auto;
     height: auto;
 }
 
@@ -39,7 +39,8 @@ nav a:hover {
 }
 
 .carousel-inner {
-    min-height: 450px;
+    
+    min-height: 560px;
     display: flex;
     align-items: center;
     background-color: black;
@@ -64,14 +65,13 @@ form {
 }
 
 label {
-    font-weight: bold;
-    margin-top: 10px;
+    font-weight: bold;   
 }
 
 input {
     padding: 10px;
     border-radius: 5px;
-    margin-bottom: 20px;
+
     box-sizing: border-box;
     border: 1px solid black;
 }
@@ -204,7 +204,7 @@ input[type="submit"]:hover {
     transition: .5s;
 }
 .signup_link {
-    margin: 30px 0;
+    margin: 30px ;
     text-align: center;
     font-size: 16px;
     color: #666666;
