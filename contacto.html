@@ -11,26 +11,42 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <nav>
-            <a href="index.html">
-                <img src="logo.png" width="50%" height="50%">
-            </a>
-          <div>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="index.html" style="border: none;">
+        <img src="logo.png" width="50%" height="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
             <a href="index.html" class="active">Inicio</a>
-            <a href="#">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a href="productos.html">Productos</a>
+          </li>
+          <li class="nav-item">
             <a href="#">Servicios</a>
-          </div>
-          <div class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
-            <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
-          </div>
-          <div>
-            <a href="login.html">Iniciar Sesión</a>
-            <a href="registro.html" style="margin-right: 50px">Registrarse</a>
-          </div>
-        </nav>
-    </header>
+          </li>
+        </ul>
+        <div class="d-flex" style="padding-bottom: auto; margin-left: 100px">
+          <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="login.html" style="margin-left: 110px">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a href="registro.html">Registrarse</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
     <main>
         <div>
             <br>

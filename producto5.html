@@ -12,22 +12,44 @@
 <body>
 <div class="container">
     <header>
-        <nav>
-            <img src="logo.png" alt="Nou Nou" width="10%" height="10%">
-            <div>
-            <a href="index.html" class="active">Inicio</a>
-            <a href="#">Productos</a>
-            <a href="#">Servicios</a>
-            <a href="login.html">Iniciar Sesión</a>
-            <a href="registro.html">Registro</a>
-            <a href="contacto.html">Contacto</a>
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="index.html" style="border: none;">
+            <img src="logo.png" width="50%" height="">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="active">Inicio</a>
+                </li>
+              <li class="nav-item">
+                <a href="productos.html">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a href="#">Servicios</a>
+              </li>
+              <li class="nav-item">
+                <a href="contacto.html">Contacto</a>
+              </li>
+            </ul>
+            <div class="d-flex" style="padding-bottom: auto; margin-left: 100px">
+              <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit" style="height: 37px;">Buscar</button>
             </div>
-            <form class="d-flex" style="padding-bottom: auto; margin-right: 25px;">
-            <input class="form-control me-1" type="search" placeholder="¿Qué deseas buscar?" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="login.html" style="margin-left: 80px">Iniciar Sesión</a>
+              </li>
+              <li class="nav-item">
+                <a href="registro.html">Registrarse</a>
+              </li>
+            </ul>
+          </div>
         </nav>
-    </header>
+      </header>
     <br>
     <h2 style="margin-left: 25px; color: rgb(14, 119, 70);"><q>La Joven de la Perla</q></h2>
     <br>
