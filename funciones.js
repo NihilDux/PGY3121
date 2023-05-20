@@ -63,3 +63,18 @@ function enviarFormulario() {
     //error.innerHTML=mensajeError.join(' - ');
     return false;
 }
+function saludar() {
+    alert('¡Holis!');
+  }
+function generarNumeroAleatorio() {
+var numero = Math.floor(Math.random() * 100) + 1;
+var resultadoElemento = document.getElementById('resultado');
+
+if (numero <= 33) {
+    resultadoElemento.innerHTML = 'Tu Suerte Está al: ' + numero + '% :(';
+} else if (numero > 33 && numero < 66) {
+    resultadoElemento.innerHTML = 'Tu Suerte Está al: ' + numero + '% :)';
+} else if (numero > 66) {
+    resultadoElemento.innerHTML = 'Tu Suerte Está al: ' + numero + '% :D';
+}
+}
