@@ -3,21 +3,21 @@
 {% block content%}
     <h1>{{post.titulo}}</h1>
     {{error}}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <button>
             Actualizar
         </button>
     </form>
-    <form action="{% url 'published_post' post.id %}" method="POST">
+    <form action="{% url 'published_post' post.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <button>
             Publicar
         </button>
     </form>
 
-    <form action="{% url 'delete_post' post.id %}" method="POST">
+    <form action="{% url 'delete_post' post.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <button>
             Borrar
