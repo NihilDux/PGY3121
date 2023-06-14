@@ -3,4 +3,5 @@
 # pip install -r requirements.txt  ---Instalar Requerimientos (Django, Pillow, etc)
 # py manage.py makemigrations  ---Preparar migraciones para crear/habilitar sqlite3
 # py manage.py migrate  ---Hacer migraciones
+# py manage.py createsuperuser  --Crear Super Usuario ya que la BD no posee nada
 # Runserver :)
