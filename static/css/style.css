@@ -1,0 +1,183 @@
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: wheat
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+.container img {
+    max-width: auto;
+    height: auto;
+}
+
+nav {
+    background-color: tan;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px;
+    max-height: min-content;
+}
+
+nav a {
+    color: rgb(14, 119, 70);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(14, 119, 70);
+}
+
+nav a:hover {
+    background-color: rgb(14, 119, 70);
+    color: white;
+}
+
+.carousel-inner {
+    
+    min-height: 560px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: black;
+}
+
+.carousel-image {
+    width: 30%;
+    height: 30%;
+    margin: auto;
+}
+
+.carousel-item {
+    text-align: left;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}
+
+label {
+    font-weight: bold;   
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+input[type="submit"] {
+    background-color: wheat;
+    color: rgb(14, 119, 70);
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid rgb(14, 119, 70);
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(14, 119, 70);
+    color: white;
+    border: none;
+    border: 1px solid rgb(14, 119, 70);
+}
+
+.btn-volver {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: wheat;
+    color: rgb(14, 119, 70);
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid rgb(14, 119, 70);
+    font-weight: bold;
+}
+
+.btn-volver:hover {
+    background-color: rgb(14, 119, 70);
+    color: white;
+    border: none;
+}
+/*MENSAJE ERROR (LOGIN)*/
+.error {
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -o-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: rgb(196, 11, 11);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    color: #fff;
+    display: none;
+    font-size: 14px;
+    margin-top: -45px;
+    margin-left: 220px;
+    padding: 10px;
+    position:absolute;
+    }
+
+    .nav-item {
+    margin-right: 5px;
+    }
+
+    #dropdown a {
+    background-color: tan;
+    color:rgb(14, 119, 70);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    max-height: min-content;
+    }
+
+    #dropdown a:hover {
+    background-color: rgb(14, 119, 70);
+    color: white;
+    }
+
+    .tab {
+    background-color: rgb(14, 119, 70);
+    color: white;
+    border: 3px solid rgb(9, 77, 45);
+}
+
+footer {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin: 0 30px;
+    color: black;
+}
+
+footer.bottom {
+    padding: 20px 0;
+    justify-content: space-between;
+}
+
+footer .legal {
+    font-size: 12px;
+    align-items: center;
+}
+
+footer .legal > a {
+    margin: 0 4px;
+    text-decoration: none;
+    color: black;
+}
+
+footer .legal > span {
+    margin-right: 10px;
+}
+
+footer.bottom .links {
+    display: flex;
+    gap: 18px;
+}
