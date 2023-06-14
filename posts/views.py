@@ -44,22 +44,24 @@ def posts_published(request):
     return render(request, 'posts.html', {'posts': posts})
 @login_required 
 def create_post(request):
-    if request.method == 'GET':
-        return render(request, 'create_post.html',{
-            'form': PostForm
-        })
-    else:
+    if request.method == 'POST':
         try:
-            form = PostForm(request.POST)
-            new_post = form.save(commit=False) #PICO IDEA POR QUE EL COMMIT ES FALSE SI LO GUARDA IGUAL, INVESTIGAR.
-            new_post.user = request.user
-            new_post.save()
-            return redirect('posts')
+            form = PostForm(request.POST, request.FILES)  # Agregar request.FILES al inicializar el formulario
+            if form.is_valid():
+                new_post = form.save(commit=False)
+                new_post.user = request.user
+                new_post.save()
+                return redirect('posts')
         except ValueError:
-            return render(request, 'create_post.html',{
-                'form': PostForm,
-                'error': 'Porfavor Valide los Datos'
+            print(request.POST)
+            return render(request, 'create_post.html', {
+                'form': PostForm(),
+                'error': 'Por favor, valide los datos'
             })
+    else:
+        return render(request, 'create_post.html', {
+            'form': PostForm()
+        })
 
 def post_detail(request, post_id):
     if request.method == 'GET':

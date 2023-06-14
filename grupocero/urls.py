@@ -2,6 +2,8 @@
 from django.contrib import admin
 from django.urls import path
 from posts import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
@@ -14,4 +16,5 @@ urlpatterns = [
     path('posts/<int:post_id>/delete', views.delete_post, name='delete_post'),
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
