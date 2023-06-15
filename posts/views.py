@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    posts = Post.objects.filter(dateaprobado__isnull=False).order_by('-dateaprobado')
+    return render(request, 'home.html', {'posts': posts})
 
 def signup(request):
 
@@ -51,6 +52,7 @@ def create_post(request):
                 new_post = form.save(commit=False)
                 new_post.user = request.user
                 new_post.save()
+                print(request.POST, request.FILES)
                 return redirect('posts')
         except ValueError:
             print(request.POST)
