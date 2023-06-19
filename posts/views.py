@@ -3,16 +3,19 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import PostForm
+from .forms import PostForm, CategoriaForm
 from .models import Post
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
-def home(request):
-    posts = Post.objects.filter(dateaprobado__isnull=False).order_by('-dateaprobado')
-    return render(request, 'home.html', {'posts': posts})
+def superuser_check(user):
+    return user.is_superuser
 
+def home(request):
+    posts = Post.objects.filter(dateaprobado__isnull=False, relevante=True).order_by('-dateaprobado')
+    return render(request, 'home.html', {'posts': posts})
+@login_required  
 def signup(request):
 
     if request.method == 'GET':
@@ -35,9 +38,13 @@ def signup(request):
                     'form': UserCreationForm,
                     "error": 'Contraseñas no coinciden.'
                 })  
-@login_required           
+@login_required          
 def posts(request):
-    posts = Post.objects.filter(user=request.user, dateaprobado__isnull=True)
+    posts = Post.objects.filter(dateaprobado__isnull=True)
+    return render(request, 'posts.html', {'posts': posts})
+    
+def  pending_posts(request):
+    posts = Post.objects.filter(user=request.user, dateaprobado__isnull=False)
     return render(request, 'posts.html', {'posts': posts})
 
 def posts_published(request):
@@ -85,7 +92,17 @@ def post_detail(request, post_id):
                 'form': form,
                 'error': 'Error al Actualizar'
                 })
+        
+def detail(request, post_id):
+        post = get_object_or_404(Post, pk=post_id)
+        form = PostForm(instance=post)
+        return render(request, 'detail.html',{
+            'post':post,
+            'form': form
+            })
+
 @login_required 
+@user_passes_test(superuser_check)
 def published_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id, user=request.user)
     if request.method == 'POST':
@@ -118,6 +135,3 @@ def signin(request):
         else:
             login(request, user)
             return redirect('posts')
-            
-
-        
