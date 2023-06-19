@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def superuser_check(user):
     return user.is_superuser
 
+
+#@user_passes_test(superuser_check)
+
 def home(request):
     posts = Post.objects.filter(dateaprobado__isnull=False, relevante=True).order_by('-dateaprobado')
     return render(request, 'home.html', {'posts': posts})
@@ -74,7 +77,7 @@ def create_post(request):
 
 def post_detail(request, post_id):
     if request.method == 'GET':
-        post = get_object_or_404(Post, pk=post_id, user=request.user)
+        post = get_object_or_404(Post, pk=post_id)
         form = PostForm(instance=post)
         return render(request, 'post_detail.html',{
             'post':post,
@@ -102,7 +105,6 @@ def detail(request, post_id):
             })
 
 @login_required 
-@user_passes_test(superuser_check)
 def published_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id, user=request.user)
     if request.method == 'POST':

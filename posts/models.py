@@ -16,7 +16,7 @@ class Post(models.Model):
     imagen       = models.ImageField(upload_to='posts/', null=True, blank=True)
     id_categoria = models.ForeignKey('Categoria',on_delete=models.CASCADE, db_column='idCategoria', null=True)
     subida       = models.DateTimeField(auto_now_add=True)
-    dateaprobado = models.DateTimeField(null=True, blank=True)
+    aprobado     = models.BooleanField(default=False)
     relevante    = models.BooleanField(default=False)
     user         = models.ForeignKey(User, on_delete=models.CASCADE)
 

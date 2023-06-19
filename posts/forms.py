@@ -12,11 +12,12 @@ class CategoriaForm(ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['titulo', 'descripcion', 'precio','imagen', 'id_categoria']
+        fields = ['titulo', 'descripcion', 'precio','imagen','aprobado', 'id_categoria']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
             'precio': forms.TextInput(attrs={'class': 'form-control'}),
             'imagen': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'aprobado': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'id_categoria': forms.Select(attrs={'class': 'form-select'}),
         }

@@ -19,7 +19,7 @@
                 {% for post in posts reversed %}
                     <div class="col">
                         <div class="card">
-                            <a href="{% url 'published_post' post.id  %}">
+                            <a href="{% url 'post_detail' post.id  %}">
                                 <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
                             </a>
                             <div class="card-body">
