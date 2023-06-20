@@ -9,6 +9,8 @@
     height: auto;
 }
 
+
+
 nav {
     background-color: tan;
     display: flex;
@@ -19,7 +21,6 @@ nav {
 }
 
 nav a {
-    padding: 10px;
     border-radius: 5px;
     border: 1px solid rgb(14, 119, 70);
 }
