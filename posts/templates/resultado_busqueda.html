@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <body>
+        <h1>Resultados de búsqueda</h1>
+        
+        <ul>
+            {% for resultado in resultados %}
+                <li>{{ resultado }}</li>
+            {% empty %}
+                <li>No se encontraron resultados.</li>
+            {% endfor %}
+        </ul>
+    </body>
+{% endblock %}

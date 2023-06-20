@@ -177,3 +177,10 @@ def signin(request):
             login(request, user)
             return redirect('home')
         
+def buscar(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')  # Obtén el valor ingresado en la barra de búsqueda
+        # Realiza la lógica de búsqueda con el valor de 'query' aquí
+        
+        # Puedes enviar los resultados de búsqueda a una plantilla para mostrarlos
+        return render(request, 'resultado_busqueda.html', {'resultados': query})

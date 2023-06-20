@@ -20,5 +20,6 @@ urlpatterns = [
     path('posts/<int:post_id>/delete', views.delete_post, name='delete_post'),
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
+    path('buscar/', views.buscar, name='buscar'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
