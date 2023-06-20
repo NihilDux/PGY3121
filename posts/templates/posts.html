@@ -1,52 +1,107 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<main class="container"></main>
+
 <div class="row">
     <div class="col-md-10 offset-md-1">
-        {% if user.is_authenticated%}
-            {% if user.is_authenticated and user.is_superuser%}
-              <h1 class="text-center display-3 py-5">Solicitudes de Aprobacion</h1>
-              {% else %}
-              <h1 class="text-center display-3 py-5">Post Pendientes</h1>
+        {% if user.is_authenticated %}
+            {% if user.is_authenticated and user.is_superuser %}
+                {% if request.path == "/posts/" %}
+                    <h1 class="text-center display-3 py-5">Pendientes de Aprobacion</h1>
+                {% else %}
+                    <h1 class="text-center display-3 py-5">Seleccion de Obras</h1>
+                {% endif %}
+            {% else %}
+                {% if request.path == "/pending_posts/" %}
+                    <h1 class="text-center display-3 py-5">Post Pendientes</h1>
+                {% else %}
+                    <h1 class="text-center display-3 py-5">Seleccion de Obras</h1>
+                {% endif %}
             {% endif %}
         {% else %}
         <h1 class="text-center display-3 py-5">Seleccion de Obras</h1>
         {% endif %}
         <div class="row row-cols-1 row-cols-md-3 g-4 border border-4">
             {% if user.is_superuser%}
-            
-                {% for post in posts reversed %}
-                    <div class="col">
-                        <div class="card">
-                            <a href="{% url 'post_detail' post.id  %}">
-                                <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{post.titulo}}</h5>
-                                <p class="card-text">{{post.descripcion}}</p>
-                                <div class="card-footer">
-                                    <small class="text-muted">Artista: {{post.user.username}}</small>
-                                </div>
-                            </div>
-                {% endfor %}
-            {% else %}
-                {% for post in posts reversed %}
-                    <div class="col">
-                        <div class="card">
-                            <a href="{% url 'detail' post.id  %}">
-                                <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{post.titulo}}</h5>
-                                <p class="card-text">{{post.descripcion}}</p>
-                                <div class="card-footer">
-                                    <small class="text-muted">Artista: {{post.user.username}}</small>
+                {% for post in posts %}
+                    {% with counter=forloop.counter0|add:1 %}
+                        <div class="col">
+                            <div class="card">
+                                <a href="{% url 'post_detail' post.id %}">
+                                    <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
+                                    <p class="card-text">{{ post.descripcion }}</p>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Artista: {{ post.user.username }}</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>     
-                {% endfor %}    
+                    {% endwith %}
+                {% endfor %}
+            {% else %}
+                {% if user.is_authenticated %}
+                    {% if request.path == "/pending_posts/" %}
+                        {% for post in posts reversed %}
+                            {% with counter=forloop.counter0|add:1 %}
+                                <div class="col">
+                                    <div class="card">
+                                        <a href="{% url 'post_detail' post.id %}">
+                                            <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
+                                            <p class="card-text">{{ post.descripcion }}</p>
+                                            <div class="card-footer">
+                                                <small class="text-muted">Artista: {{ post.user.username }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endwith %}
+                        {% endfor %}
+                    {% else %}
+                        {% for post in posts reversed %}
+                            {% with counter=forloop.counter0|add:1 %}
+                                <div class="col">
+                                    <div class="card">
+                                        <a href="{% url 'detail' post.id %}">
+                                            <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
+                                            <p class="card-text">{{ post.descripcion }}</p>
+                                            <div class="card-footer">
+                                                <small class="text-muted">Artista: {{ post.user.username }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endwith %}
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    {% for post in posts reversed %}
+                        {% with counter=forloop.counter0|add:1 %}
+                            <div class="col">
+                                <div class="card">
+                                    <a href="{% url 'detail' post.id %}">
+                                        <img src="{% url 'home' %}media/{{ post.imagen }}" class="d-block carousel-image" alt="...">
+                                    </a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
+                                        <p class="card-text">{{ post.descripcion }}</p>
+                                        <div class="card-footer">
+                                            <small class="text-muted">Artista: {{ post.user.username }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endwith %}
+                    {% endfor %}
+                {% endif %}
             {% endif %}
         </div>
     </div>

@@ -18,6 +18,7 @@ class Post(models.Model):
     subida       = models.DateTimeField(auto_now_add=True)
     aprobado     = models.BooleanField(default=False)
     relevante    = models.BooleanField(default=False)
+    comentario   = models.TextField(null=True, blank=True)
     user         = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
