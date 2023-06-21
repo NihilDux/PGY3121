@@ -90,20 +90,7 @@ def create_post(request):
                     new_post.user = request.user
                     new_post.save()
                     print(request.POST, request.FILES)
-                    return redirect('pending_post')
-                else:
-                    if 'aprobado' in form.fields: # PARECE QUE NO FUNCA ESTO
-                        del request.POST['aprobado']
-                    if 'relevante' in form.fields: # PARECE QUE NO FUNCA ESTO
-                        del request.POST['relevante']
-                    if 'comentario' in form.fields: # PARECE QUE NO FUNCA ESTO
-                        del request.POST['comentario']
-
-                        new_post = form.save(commit=False)
-                        new_post.user = request.user
-                        new_post.save()
-                        print(request.POST, request.FILES)
-                        return redirect('pending_posts')
+                    return redirect('pending_posts')
         except ValueError:
             print(request.POST)
             return render(request, 'create_post.html', {
@@ -152,7 +139,7 @@ def published_post(request, post_id):
         return redirect('home')
 @login_required 
 def delete_post(request, post_id):
-    post = get_object_or_404(Post, pk=post_id, user=request.user)
+    post = get_object_or_404(Post, pk=post_id)
     if request.method == 'POST':
         post.delete()
         return redirect('posts')
