@@ -7,6 +7,7 @@ from .forms import PostForm
 from .models import Post, Categoria
 from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
+from django.db.models import Q
 
 def superuser_check(user):
     return user.is_superuser
@@ -163,11 +164,17 @@ def signin(request):
         else:
             login(request, user)
             return redirect('home')
-        
+
 def buscar(request):
     if request.method == 'GET':
-        query = request.GET.get('q')  # Obtén el valor ingresado en la barra de búsqueda
-        # Realiza la lógica de búsqueda con el valor de 'query' aquí
+        query = request.GET["q"]
+
+        #resultados = Post.objects.all()
+
+        resultados = Post.objects.filter(
+            Q(titulo__icontains=query) |
+            Q(imagen__icontains=query)
+            )
         
-        # Puedes enviar los resultados de búsqueda a una plantilla para mostrarlos
-        return render(request, 'resultado_busqueda.html', {'resultados': query})
+        context = {'resultados': resultados}
+        return render(request,'resultado_busqueda.html',context)
