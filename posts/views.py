@@ -166,6 +166,7 @@ def signin(request):
             return redirect('home')
 
 def buscar(request):
+<<<<<<< HEAD
     if request.method == 'GET':
         query = request.GET["q"]
 
@@ -178,3 +179,13 @@ def buscar(request):
         
         context = {'resultados': resultados}
         return render(request,'resultado_busqueda.html',context)
+=======
+        template_name="base.html"
+        query = request.GET['q']  # Obtén el valor ingresado en la barra de búsqueda
+        # Realiza la lógica de búsqueda con el valor de 'query' aquí
+        resultado = Post.objects.filter(titulo__icontains=query)
+        context={'resultados': resultado}
+        
+        # Puedes enviar los resultados de búsqueda a una plantilla para mostrarlos
+        return render(request, 'resultado_busqueda.html', context)
+>>>>>>> f3a2e7b0189884d0a79547a252949fc25a93d766

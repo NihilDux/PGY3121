@@ -6,6 +6,7 @@
 
 {% extends 'base.html' %}
 
+<<<<<<< HEAD
 {% block content %}
 <body>
     <div class="row with-left-margin">
@@ -30,4 +31,28 @@
         {% endif %}
     </div>
 </body>
+=======
+{% block content%}
+    <main class="container py-5">
+        <section class="card card-body">
+
+            <body>
+                <div class="card">
+                <h1>Resultados de búsqueda</h1>
+                <br>
+                
+                
+                <ul>
+                    {% for resultado in resultados %}
+                        <li>{{ resultado }}</li>
+                    {% empty %}
+                        <li>No se encontraron resultados.</li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+            </body>
+        </section>
+    </main>
+>>>>>>> f3a2e7b0189884d0a79547a252949fc25a93d766
 {% endblock %}
