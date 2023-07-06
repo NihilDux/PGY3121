@@ -16,7 +16,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
-            'precio': forms.TextInput(attrs={'class': 'form-control'}),
+            'precio': forms.NumberInput(attrs={'class': 'form-control'}),
             'imagen': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'comentario': forms.Textarea(attrs={'class': 'form-control'}),
             'id_categoria': forms.Select(attrs={'class': 'form-select'}),

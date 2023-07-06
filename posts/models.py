@@ -12,7 +12,7 @@ class Categoria(models.Model):
 class Post(models.Model):
     titulo       = models.CharField(max_length=100)
     descripcion  = models.TextField(blank=True)
-    precio       = models.CharField(max_length=100, null=True)
+    precio       = models.PositiveIntegerField(null=True)
     imagen       = models.ImageField(upload_to='posts/', null=True, blank=True)
     id_categoria = models.ForeignKey('Categoria',on_delete=models.CASCADE, db_column='idCategoria', null=True)
     subida       = models.DateTimeField(auto_now_add=True)
