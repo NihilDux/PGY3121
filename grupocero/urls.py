@@ -21,5 +21,9 @@ urlpatterns = [
     path('logout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
     path('buscar/', views.buscar, name='buscar'),
+    path('carrito/', views.carrito, name='carrito'),
+    path('carrito/agregar/<int:post_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/eliminar/<int:carritoitem_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
+    path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

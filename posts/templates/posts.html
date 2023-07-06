@@ -83,7 +83,7 @@
                         {% endfor %}
                     {% endif %}
                 {% else %}
-                    {% for post in posts reversed %}
+                    {% for post in posts %}
                         {% with counter=forloop.counter0|add:1 %}
                             <div class="col">
                                 <div class="card">
@@ -95,6 +95,10 @@
                                         <p class="card-text">{{ post.descripcion }}</p>
                                         <div class="card-footer">
                                             <small class="text-muted">Artista: {{ post.user.username }}</small>
+                                            <form action="{% url 'agregar_al_carrito' post.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

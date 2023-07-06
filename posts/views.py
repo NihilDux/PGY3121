@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.db import IntegrityError
 from .forms import PostForm
-from .models import Post, Categoria
+from .models import Post, Categoria, CarritoItem
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 from django.db.models import Q
@@ -14,6 +15,40 @@ def superuser_check(user):
 
 
 #@user_passes_test(superuser_check)
+
+def agregar_al_carrito(request, post_id): # Falta agregar de que no redirija y solo lo agregue al carrito mostrando un mensaje de que se agrego algo blabla.
+    post = get_object_or_404(Post, pk=post_id)
+    User = get_user_model()
+    user = User.objects.get_or_create(username='usuario_anonimo')[0]
+
+    carrito_item, created = CarritoItem.objects.get_or_create(
+        post=post,
+        usuario=user,
+        precio_unitario=post.precio  # Asignar el precio del post al campo precio_unitario
+    )
+
+    if not created:
+        carrito_item.cantidad += 1
+        carrito_item.save()
+
+    return redirect('carrito')
+
+def eliminar_del_carrito(request, carritoitem_id):
+    carrito_item = get_object_or_404(CarritoItem, pk=carritoitem_id)
+    carrito_item.delete()
+    return redirect('carrito')
+
+
+def vaciar_carrito(request):
+    CarritoItem.objects.all().delete()
+    return redirect('carrito')
+
+
+def carrito(request):
+    items = CarritoItem.objects.all()
+    total_carrito = sum(item.subtotal() for item in items)
+    return render(request, 'carrito.html', {'items': items, 'total_carrito': total_carrito})
+
 
 def home(request):
     posts = Post.objects.filter(aprobado=True, relevante=True).order_by('-aprobado')
@@ -62,7 +97,7 @@ def posts(request):
         posts = Post.objects.filter(aprobado=False, user=request.user)
         return render(request, 'posts.html', {'posts': posts})
     
-def  pending_posts(request):
+def pending_posts(request):
     posts = Post.objects.filter(user=request.user, aprobado=False)
     return render(request, 'posts.html', {'posts': posts})
 
