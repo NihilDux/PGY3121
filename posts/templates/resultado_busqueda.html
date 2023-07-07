@@ -17,7 +17,14 @@
                                 <p>Artista: {{ resultado.user.username }}</p>
                                 <p>Categoría: {{ resultado.id_categoria.categoria }}</p>
                                 <a href="{% url 'detail' resultado.id %}">
+                                    <!--AGREGUÉ ESTO, PORQUE EL ADMIN PUEDE ELIMINAR LA IMAGEN ANTES DE LA APROBACIÓN DEL POST.
+                                    SI LA IMAGEN SE ELIMINA Y AÚN ASÍ SE SUBE EL POST, PUES SE GENERA UN ERROR EN LA BUSQUEDA
+                                    AL NO HABER UNA IMAGEN ASOCIADA.-->
+                                    {% if resultado.imagen %}
                                     <img src="{{ resultado.imagen.url }}" alt="{{ resultado.titulo }}" class="img-fluid">
+                                    {% else %}
+                                    <p>No hay imagen disponible</p>
+                                    {% endif %}
                                 </a>
                             </div>
                         </div>

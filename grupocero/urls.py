@@ -25,5 +25,11 @@ urlpatterns = [
     path('carrito/agregar/<int:post_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
     path('carrito/eliminar/<int:carritoitem_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
     path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
+
+
+
+# POR DEFINIR Y COMPLETAR
+    path('/', views.productos_por_categoria, name='productos_por_categoria'),
+    path('/', views.productos_por_artista, name='productos_por_artista'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -14,7 +14,6 @@ from django.db.models import Q
 def superuser_check(user):
     return user.is_superuser
 
-
 #@user_passes_test(superuser_check)
 
 def agregar_al_carrito(request, post_id): # Falta agregar de que no redirija y solo lo agregue al carrito mostrando un mensaje de que se agrego algo blabla.
@@ -45,12 +44,6 @@ def vaciar_carrito(request):
     return redirect('carrito')
 
 
-def carrito(request):
-    items = CarritoItem.objects.all()
-    total_carrito = sum(item.subtotal() for item in items)
-    return render(request, 'carrito.html', {'items': items, 'total_carrito': total_carrito})
-
-
 def home(request):
     posts = Post.objects.filter(aprobado=True, relevante=True).order_by('-aprobado')
     if request.user.is_authenticated:
@@ -67,7 +60,6 @@ def home(request):
             'posts': posts,
             'num_posts': num_posts
         }
-        
         return render(request, 'home.html', context)
     else:
         return render(request, 'home.html', {'posts': posts})
@@ -219,16 +211,57 @@ def signin(request):
 
 
 
+
+# APLIQUÉ login_required y user_passes_test A LA VISTA DEL CARRITO
+# PARA QUE EL USUARIO ACCEDA A LA VISTA SI NO ES ADMIN
+from django.contrib.auth.decorators import user_passes_test, login_required
+
+# FUNCION PARA DETERMINAR SI EL USUARIO NO ES ADMIN
+def no_es_admin(user):
+    return not (user.is_superuser or user.is_staff)
+
+# MODIFIQUÉ LA FUNCION PARA EVITAR QUE EL ADMIN ACCEDA AL CARRITO DE COMPRAS
+def carrito(request):
+    if request.user.is_superuser or request.user.is_staff:
+        return render(request, 'mensaje_admin.html')
+        #return redirect('home')
+
+    items = CarritoItem.objects.all()
+    total_carrito = sum(item.subtotal() for item in items)
+    return render(request, 'carrito.html', {'items': items, 'total_carrito': total_carrito})
+
+
+
+
+# ACÁ HICE UN CAMBIO A LA FUNCIÓN
 def buscar(request):
     if request.method == 'GET':
         query = request.GET.get("q")
+
+        #AL APRETAR BUSCAR (CON EL CAMPO VACÍO) MOSTRABA TODAS LAS OBRAS
+        # CON ESTE CAMBIO MUESTRA EL MENSAJE DE "NO SE ENCONTRARON RESULTADOS"
+        if not query:
+            context = {'query': query}
+            return render(request, 'resultado_busqueda.html', context)
 
         resultados = Post.objects.filter(
             Q(user__username__icontains=query) |  # Buscar por nombre de usuario del artista
             Q(titulo__icontains=query) |  # Buscar por título
             Q(id_categoria__categoria__icontains=query)  # Buscar por categoría
+            #,imagen__isnull=False -- IGNORAR
         )
 
         context = {'resultados': resultados, 'query': query}
         return render(request, 'resultado_busqueda.html', context)
 
+
+
+
+# POR DEFINIR Y COMPLETAR
+def productos_por_categoria(request):
+    # Obtener productos por categoría
+    return
+
+def productos_por_artista(request):
+    # Obtener productos por artista
+    return

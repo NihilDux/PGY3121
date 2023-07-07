@@ -51,9 +51,12 @@
         {% else %}
           <p class="text-center">Tu carrito está vacío.</p>
         {% endif %}
+        <!--INCLUÍ UN BOTÓN PARA HACER MÁS CÓMODA LA COMPRA-->
+        <div style="display: flex; justify-content: center;">
+          <a href="{% url 'posts_published'  %}" class="btn-volver">Seguir agregando obras</a>
+      </div>
       </div>
     </div>
-
   </section>
 </main>
 {% endblock %}

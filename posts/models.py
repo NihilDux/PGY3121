@@ -21,6 +21,7 @@ class Post(models.Model):
     relevante = models.BooleanField(default=False)
     comentario = models.TextField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #imagen = models.ImageField(upload_to='media', default='default.jpg') -- IGNORAR
 
     def __str__(self):
         return self.titulo + ' - Por ' + self.user.username
