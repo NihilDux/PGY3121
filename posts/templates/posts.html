@@ -33,6 +33,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
                                     <p class="card-text">{{ post.descripcion }}</p>
+                                    <p class="card-text">Precio: ${{ post.precio }}</p>
                                     <div class="card-footer">
                                         <small class="text-muted">Artista: {{ post.user.username }}</small>
                                     </div>
@@ -54,6 +55,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
                                             <p class="card-text">{{ post.descripcion }}</p>
+                                            <p class="card-text">Precio: ${{ post.precio }}</p>
                                             <div class="card-footer">
                                                 <small class="text-muted">Artista: {{ post.user.username }}</small>
                                             </div>
@@ -73,6 +75,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
                                             <p class="card-text">{{ post.descripcion }}</p>
+                                            <p class="card-text">Precio: ${{ post.precio }}</p>
                                             <div class="card-footer">
                                                 <small class="text-muted">Artista: {{ post.user.username }}</small>
                                             </div>
@@ -93,6 +96,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Artículo {{ counter }}: {{ post.titulo }}</h5>
                                         <p class="card-text">{{ post.descripcion }}</p>
+                                        <p class="card-text text-end">Precio: ${{ post.precio }}</p>
                                         <div class="card-footer">
                                             <small class="text-muted">Artista: {{ post.user.username }}</small>
                                             <form action="{% url 'agregar_al_carrito' post.id %}" method="post">

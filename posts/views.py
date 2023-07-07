@@ -3,18 +3,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.db import IntegrityError
-from django.db.models import Count
 from .forms import PostForm
 from .models import Post, Categoria, CarritoItem
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
-# Create your views here.
 from django.db.models import Q
+# Create your views here.
 
 def superuser_check(user):
     return user.is_superuser
-
-#@user_passes_test(superuser_check)
 
 def agregar_al_carrito(request, post_id): # Falta agregar de que no redirija y solo lo agregue al carrito mostrando un mensaje de que se agrego algo blabla.
     post = get_object_or_404(Post, pk=post_id)
@@ -46,21 +42,12 @@ def vaciar_carrito(request):
 
 def home(request):
     posts = Post.objects.filter(aprobado=True, relevante=True).order_by('-aprobado')
-    
-    # Obtener las categorías existentes
     categorias = Categoria.objects.all()
-    
-    # Obtener los usuarios existentes
     usuarios = User.objects.all()
     
     if request.user.is_authenticated:
-        # Obtener el usuario actual
         user = request.user
-        
-        # Filtrar las publicaciones del usuario actual
         posts_by_user = posts.filter(user=user)
-        
-        # Obtener el conteo de publicaciones del usuario actual
         num_posts = posts_by_user.count()
         
         context = {
@@ -227,17 +214,9 @@ def signin(request):
             CarritoItem.objects.all().delete()
             return redirect('home')
 
-
-
-
-# APLIQUÉ login_required y user_passes_test A LA VISTA DEL CARRITO
-# PARA QUE EL USUARIO ACCEDA A LA VISTA SI NO ES ADMIN
-
-# FUNCION PARA DETERMINAR SI EL USUARIO NO ES ADMIN
 def no_es_admin(user):
     return not (user.is_superuser or user.is_staff)
 
-# MODIFIQUÉ LA FUNCION PARA EVITAR QUE EL ADMIN ACCEDA AL CARRITO DE COMPRAS
 def carrito(request):
     if request.user.is_superuser or request.user.is_staff:
         return render(request, 'mensaje_admin.html')
@@ -246,13 +225,9 @@ def carrito(request):
         total_carrito = sum(item.subtotal() for item in items)
         return render(request, 'carrito.html', {'items': items, 'total_carrito': total_carrito})
 
-
 def buscar(request):
     if request.method == 'GET':
         query = request.GET.get("q")
-
-        #AL APRETAR BUSCAR (CON EL CAMPO VACÍO) MOSTRABA TODAS LAS OBRAS
-        # CON ESTE CAMBIO MUESTRA EL MENSAJE DE "NO SE ENCONTRARON RESULTADOS"
         if not query:
             context = {'query': query}
             return render(request, 'resultado_busqueda.html', context)
@@ -261,7 +236,6 @@ def buscar(request):
             Q(user__username__icontains=query) |  # Buscar por nombre de usuario del artista
             Q(titulo__icontains=query) |  # Buscar por título
             Q(id_categoria__categoria__icontains=query)  # Buscar por categoría
-            #,imagen__isnull=False -- IGNORAR
         )
 
         context = {'resultados': resultados, 'query': query}
@@ -286,27 +260,3 @@ def posts_por_usuario(request, user_id):
         'productos': productos_usuario
     }
     return render(request, 'productos_por.html', context)
-
-
-
-
-#def productos_por_categoria(request, id_categoria):
-    #categoria = get_object_or_404(Categoria, id_categoria=id_categoria)
-    #productos = Post.objects.filter(id_categoria=categoria)
-    #context = {
-    #    'categoria': categoria,
-    #    'productos': productos
-    #}
-    #return render(request, 'productos_por.html', context)
-
-
-#def productos_por_usuario(request, username):
-
-#    usuario = User.objects.get(username=username)
-
-#    productos = Post.objects.filter(user=usuario)
-
- #   context = {
-  #      'usuario': usuario,
-   #     'productos': productos
- #  }
