@@ -2,15 +2,13 @@
 
 {% block content%}
 <main class="container py-5">
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and not user.is_superuser and user.username != 'admin' %}
         <p class="text-end">Total de producto por el usuario "{{ user.username }}": {{ num_posts }}</p>
     {% endif %}
     <section class="card card-body">
         <div>
-            <div class="text-center">
-                
+            <div class="text-center"> 
                 <h1 class="display-3 py-1">Grupo Cero</h1>
-                
             </div>
             <br>
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -44,11 +42,8 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                
-                
             </div>
         </div>
-
     </section>
     <section class="card card-body"> 
         <div class="row">
