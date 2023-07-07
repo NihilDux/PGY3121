@@ -1,4 +1,6 @@
 from pathlib import Path
+from django.conf.locale.en import formats as en_formats
+
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,18 +95,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+
 
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
 USE_TZ = True
 
+
+en_formats.NUMBER_GROUPING = 3
+en_formats.THOUSAND_SEPARATOR = '.'
+
+LANGUAGE_CODE = 'en-us'
+USE_I18N = True
 USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
-NUMBER_GROUPING = 3
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
