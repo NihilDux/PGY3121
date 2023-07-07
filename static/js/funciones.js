@@ -63,10 +63,11 @@ function enviarFormulario() {
     //error.innerHTML=mensajeError.join(' - ');
     return false;
 }
-function saludar() {
-    alert('¡Holis!');
-  }
-function generarNumeroAleatorio() {
+function formu() {
+    alert('¡Un Administrador recibirá la información!');
+}
+
+function NumAleatorio() {
 var numero = Math.floor(Math.random() * 100) + 1;
 var resultadoElemento = document.getElementById('resultado');
 

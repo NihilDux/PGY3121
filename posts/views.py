@@ -71,11 +71,11 @@ def contacto(request):
 
         return render(request, 'contacto.html', {
             
-            'mensaje': 'Enviado Correctamente'
+            'mensaje': 'Enviado Correctamente',
+            'script' : 'window.onload = function() {formu()};'      
         }, print(request.POST))
     else:
-        return render(request, 'contacto.html', {
-            
+        return render(request, 'contacto.html', { 
         })
 
 @login_required  
