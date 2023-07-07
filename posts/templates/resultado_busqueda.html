@@ -1,33 +1,32 @@
-<style>
-    .with-left-margin {
-        margin-left: 20px;
-    }
-</style>
-
 {% extends 'base.html' %}
 
 {% block content %}
-<body>
-    <div class="row with-left-margin">
-        <div class="with-left-margin"><h1><br><p>Resultados de la búsqueda</p></br></h1></div>
+<main class="container py-5">
+    <section class="card card-body">   
+        <div class="text-center mb-4">
+            <h2 class="display-4 fw-bold">Resultados de la búsqueda para "{{ query }}</h2>
+        </div>
+        <br>
         {% if resultados %}
-            {% for resultado in resultados %}
-                <div class="col-md-4 with-left-margin">
-                    <div class="card mb-4">
-                        <img src="{{ resultado.imagen.url }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ resultado.titulo }}</h5>
-                            <p class="card-text">"Tempus fugit, amor manet. In medio virtus est, et sapientia vincit obscuritatem. Carpe diem et omnia vincit amor. Memento mori, vita brevis. Per aspera ad astra, ad aeternitatem."</p>
-                            <div class="d-flex justify-content-end">
-                                <a href="#" class="btn btn-primary">BUTTON</a> <!--INCLUIR UNA ACCIÓN-->
+            <div class="row row-cols-2">
+                {% for resultado in resultados %}
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>{{ resultado.titulo }}</h2>
+                                <p>Artista: {{ resultado.user.username }}</p>
+                                <p>Categoría: {{ resultado.id_categoria.categoria }}</p>
+                                <a href="{% url 'detail' resultado.id %}">
+                                    <img src="{{ resultado.imagen.url }}" alt="{{ resultado.titulo }}" class="img-fluid">
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         {% else %}
-            <div class="with-left-margin">No se encontraron resultados</div>
+            <p>No se encontraron resultados.</p>
         {% endif %}
-    </div>
-</body>
+    </section>
+</main>
 {% endblock %}

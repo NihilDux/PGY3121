@@ -200,16 +200,18 @@ def signin(request):
             login(request, user)
             return redirect('home')
 
+
+
 def buscar(request):
     if request.method == 'GET':
-        query = request.GET["q"]
-
-        #resultados = Post.objects.all()
+        query = request.GET.get("q")
 
         resultados = Post.objects.filter(
-            Q(titulo__icontains=query) |
-            Q(imagen__icontains=query)
-            )
-        
-        context = {'resultados': resultados}
-        return render(request,'resultado_busqueda.html',context)
+            Q(user__username__icontains=query) |  # Buscar por nombre de usuario del artista
+            Q(titulo__icontains=query) |  # Buscar por título
+            Q(id_categoria__categoria__icontains=query)  # Buscar por categoría
+        )
+
+        context = {'resultados': resultados, 'query': query}
+        return render(request, 'resultado_busqueda.html', context)
+
