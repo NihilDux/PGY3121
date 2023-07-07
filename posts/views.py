@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.db import IntegrityError
+from django.db.models import Count
 from .forms import PostForm
 from .models import Post, Categoria, CarritoItem
 from django.http import HttpResponse
@@ -52,8 +53,24 @@ def carrito(request):
 
 def home(request):
     posts = Post.objects.filter(aprobado=True, relevante=True).order_by('-aprobado')
-    return render(request, 'home.html', {'posts': posts})
-
+    if request.user.is_authenticated:
+        # Obtener el usuario actual
+        user = request.user
+        
+        # Filtrar las publicaciones del usuario actual
+        posts_by_user = posts.filter(user=user)
+        
+        # Obtener el conteo de publicaciones del usuario actual
+        num_posts = posts_by_user.count()
+        
+        context = {
+            'posts': posts,
+            'num_posts': num_posts
+        }
+        
+        return render(request, 'home.html', context)
+    else:
+        return render(request, 'home.html', {'posts': posts})
 def contacto(request):
     if request.method == 'POST':
 
