@@ -46,6 +46,13 @@ def vaciar_carrito(request):
 
 def home(request):
     posts = Post.objects.filter(aprobado=True, relevante=True).order_by('-aprobado')
+    
+    # Obtener las categorías existentes
+    categorias = Categoria.objects.all()
+    
+    # Obtener los usuarios existentes
+    usuarios = User.objects.all()
+    
     if request.user.is_authenticated:
         # Obtener el usuario actual
         user = request.user
@@ -58,11 +65,20 @@ def home(request):
         
         context = {
             'posts': posts,
-            'num_posts': num_posts
+            'num_posts': num_posts,
+            'categorias': categorias,
+            'usuarios': usuarios
         }
         return render(request, 'home.html', context)
     else:
-        return render(request, 'home.html', {'posts': posts})
+        context = {
+            'posts': posts,
+            'categorias': categorias,
+            'usuarios': usuarios
+        }
+        return render(request, 'home.html', context)
+
+    
 def contacto(request):
     if request.method == 'POST':
 
@@ -191,6 +207,7 @@ def delete_post(request, post_id):
 @login_required 
 def signout(request):
     logout(request)
+    CarritoItem.objects.all().delete()
     return redirect('home')
 
 def signin(request):
@@ -207,6 +224,7 @@ def signin(request):
             })
         else:
             login(request, user)
+            CarritoItem.objects.all().delete()
             return redirect('home')
 
 
@@ -214,7 +232,6 @@ def signin(request):
 
 # APLIQUÉ login_required y user_passes_test A LA VISTA DEL CARRITO
 # PARA QUE EL USUARIO ACCEDA A LA VISTA SI NO ES ADMIN
-from django.contrib.auth.decorators import user_passes_test, login_required
 
 # FUNCION PARA DETERMINAR SI EL USUARIO NO ES ADMIN
 def no_es_admin(user):
@@ -224,16 +241,12 @@ def no_es_admin(user):
 def carrito(request):
     if request.user.is_superuser or request.user.is_staff:
         return render(request, 'mensaje_admin.html')
-        #return redirect('home')
-
-    items = CarritoItem.objects.all()
-    total_carrito = sum(item.subtotal() for item in items)
-    return render(request, 'carrito.html', {'items': items, 'total_carrito': total_carrito})
-
+    else:
+        items = CarritoItem.objects.all()
+        total_carrito = sum(item.subtotal() for item in items)
+        return render(request, 'carrito.html', {'items': items, 'total_carrito': total_carrito})
 
 
-
-# ACÁ HICE UN CAMBIO A LA FUNCIÓN
 def buscar(request):
     if request.method == 'GET':
         query = request.GET.get("q")
@@ -253,15 +266,38 @@ def buscar(request):
 
         context = {'resultados': resultados, 'query': query}
         return render(request, 'resultado_busqueda.html', context)
+    
+def post_por_categoria(request, categoria_id):
+    categoria = get_object_or_404(Categoria, id_categoria=categoria_id)
+    productos_categoria = Post.objects.filter(id_categoria=categoria)
 
-def productos_por_categoria(request, id_categoria):
-    categoria = get_object_or_404(Categoria, id_categoria=id_categoria)
-    productos = Post.objects.filter(id_categoria=categoria)
     context = {
         'categoria': categoria,
-        'productos': productos
+        'productos': productos_categoria
     }
     return render(request, 'productos_por.html', context)
+
+def posts_por_usuario(request, user_id):
+    usuario = get_object_or_404(User, id=user_id)
+    productos_usuario = Post.objects.filter(user=usuario)
+
+    context = {
+        'usuario': usuario,
+        'productos': productos_usuario
+    }
+    return render(request, 'productos_por.html', context)
+
+
+
+
+#def productos_por_categoria(request, id_categoria):
+    #categoria = get_object_or_404(Categoria, id_categoria=id_categoria)
+    #productos = Post.objects.filter(id_categoria=categoria)
+    #context = {
+    #    'categoria': categoria,
+    #    'productos': productos
+    #}
+    #return render(request, 'productos_por.html', context)
 
 
 #def productos_por_usuario(request, username):

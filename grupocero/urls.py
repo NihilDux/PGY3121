@@ -12,7 +12,6 @@ urlpatterns = [
     path('posts/', views.posts, name='posts'),
     path('pending_posts/', views.pending_posts, name='pending_posts'),
     path('posts_published/', views.posts_published, name='posts_published'),
-    #path('posts/<int:categoria_id>/', views.post_por_categoria, name='categoria'),
     path('posts/create/', views.create_post, name='create_post'),
     path('posts/<int:post_id>/', views.post_detail, name='post_detail'),
     path('posts/detail/<int:post_id>/', views.detail, name='detail'),
@@ -25,13 +24,7 @@ urlpatterns = [
     path('carrito/agregar/<int:post_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
     path('carrito/eliminar/<int:carritoitem_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
     path('carrito/vaciar/', views.vaciar_carrito, name='vaciar_carrito'),
-
-
-
-# POR DEFINIR Y COMPLETAR
-    path('/', views.productos_por_categoria, name='productos_por_categoria'),
-    path('/', views.productos_por_artista, name='productos_por_artista'),
-    path('productos/categoria/<int:id_categoria>/', views.productos_por_categoria, name='productos_por_categoria'),
-    #path('productos/usuario/<str:username>/', views.productos_por_usuario, name='productos_por_usuario'),
+    path('categoria/<int:categoria_id>/', views.post_por_categoria, name='post_por_categoria'),
+    path('usuario/<int:user_id>/', views.posts_por_usuario, name='posts_por_usuario'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

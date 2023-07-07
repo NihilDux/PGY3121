@@ -1,19 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% if categoria %}
-    <h1>Resultados de búsqueda por categoría: {{ categoria.categoria }}</h1>
-  {% elif artista %}
-    <h1>Resultados de búsqueda por artista: {{ artista.username }}</h1>
-  {% endif %}
-
-  {% if productos %}
-    <ul>
-      {% for producto in productos %}
-        <li>{{ producto.titulo }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No se encontraron resultados.</p>
-  {% endif %}
+<main class="container py-5"> 
+  <section class="card card-body"> 
+    <div class="container py-5">
+      {% if categoria %}
+        <h1 class="text-center">Productos de la categoría "{{ categoria.categoria }}"</h1>
+        <br>
+      {% endif %}
+  
+      {% if usuario %}
+        <h1 class="text-center">Productos del usuario "{{ usuario.username }}"</h1>
+        <br>
+      {% endif %}
+  
+      <div class="row">
+        {% for producto in productos %}
+          {% if not producto.user.is_superuser and producto.user.username != 'usuario_anonimo' %}
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.titulo }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ producto.titulo }}</h5>
+                  <p class="card-text">{{ producto.descripcion }}</p>
+                  <p class="card-text">Precio: {{ producto.precio }}</p>
+                  <p class="card-text">Artista: {{ producto.user.username }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% empty %}
+          <div class="col">
+            <p class="text-center">No se encontraron productos.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
 {% endblock %}

@@ -56,6 +56,15 @@ form {
     font-family: Arial, sans-serif;
 }
 
+form.sin-estilo {
+    /* Anula los estilos para el formulario con la clase "sin-estilo" */
+    display: initial;
+    flex-direction: initial;
+    align-items: initial;
+    margin-top: initial;
+    font-family: initial;
+  }
+
 label {
     font-weight: bold;   
 }

@@ -44,20 +44,35 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                <!--POR COMPLETAR EN URLS.PY Y VIEWS.PY-->
-                <a href="{% url 'productos_por_artista' %}" class="btn">Ver por Artista</a>
-                <a href="{% url 'productos_por_categoria' %}" class="btn">Ver por Categoría</a>
+                
+                
             </div>
         </div>
-        <div class="text-center mt-5">
-            <h2>Categorías</h2>
-            <p><a href="{% url 'productos_por_categoria' id_categoria=1 %}">Ver productos por categoría 1</a></p>
-            <p><a href="{% url 'productos_por_categoria' id_categoria=2 %}">Ver productos por categoría 2</a></p>
-            <!-- Agrega más enlaces de categorías aquí si es necesario -->
-        </div>
-        
 
     </section>
-    
+    <section class="card card-body"> 
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Categorías</h2>
+                <ul class="list-group">
+                    {% for categoria in categorias %}
+                        {% if not categoria.id_categoria == 1 %}
+                            <li class="list-group-item"><a href="{% url 'post_por_categoria' categoria.id_categoria %}">{{ categoria.categoria }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2>Usuarios</h2>
+                <ul class="list-group">
+                    {% for usuario in usuarios %}
+                        {% if not usuario.username == 'admin' and not usuario.username == 'usuario_anonimo' %}
+                            <li class="list-group-item"><a href="{% url 'posts_por_usuario' usuario.id %}">{{ usuario.username }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
 </main>
 {% endblock %}

@@ -30,8 +30,8 @@
                   </td>
                   <td>{{ item.post.titulo }}</td>
                   <td>{{ item.cantidad }}</td>
-                  <td>{{ item.precio_unitario}}</td>
-                  <td>{{ item.subtotal }}</td>
+                  <td>${{ item.precio_unitario}}</td>
+                  <td>${{ item.subtotal }}</td>
                   <td>
                     <a href="{% url 'eliminar_del_carrito' item.id %}" class="btn btn-danger">Eliminar</a>
                   </td>
@@ -45,13 +45,12 @@
             <!-- Agrega aquí el enlace u API para realizar la compra -->
           </div>
           <div class="col-md-12" style="display: flex; flex-direction: column; align-items: flex-end">
-            <p>Total: {{ total_carrito }}</p>
+            <p>Total: ${{ total_carrito }}</p>
           </div>
           
         {% else %}
           <p class="text-center">Tu carrito está vacío.</p>
         {% endif %}
-        <!--INCLUÍ UN BOTÓN PARA HACER MÁS CÓMODA LA COMPRA-->
         <div style="display: flex; justify-content: center;">
           <a href="{% url 'posts_published'  %}" class="btn-volver">Seguir agregando obras</a>
       </div>
