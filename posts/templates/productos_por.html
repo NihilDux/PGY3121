@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if categoria %}
+    <h1>Resultados de búsqueda por categoría: {{ categoria.categoria }}</h1>
+  {% elif artista %}
+    <h1>Resultados de búsqueda por artista: {{ artista.username }}</h1>
+  {% endif %}
+
+  {% if productos %}
+    <ul>
+      {% for producto in productos %}
+        <li>{{ producto.titulo }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se encontraron resultados.</p>
+  {% endif %}
+{% endblock %}
