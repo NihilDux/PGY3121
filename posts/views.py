@@ -254,14 +254,23 @@ def buscar(request):
         context = {'resultados': resultados, 'query': query}
         return render(request, 'resultado_busqueda.html', context)
 
+def productos_por_categoria(request, id_categoria):
+    categoria = get_object_or_404(Categoria, id_categoria=id_categoria)
+    productos = Post.objects.filter(id_categoria=categoria)
+    context = {
+        'categoria': categoria,
+        'productos': productos
+    }
+    return render(request, 'productos_por.html', context)
 
 
+#def productos_por_usuario(request, username):
 
-# POR DEFINIR Y COMPLETAR
-def productos_por_categoria(request):
-    # Obtener productos por categoría
-    return
+#    usuario = User.objects.get(username=username)
 
-def productos_por_artista(request):
-    # Obtener productos por artista
-    return
+#    productos = Post.objects.filter(user=usuario)
+
+ #   context = {
+  #      'usuario': usuario,
+   #     'productos': productos
+ #  }

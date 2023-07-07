@@ -49,6 +49,14 @@
                 <a href="{% url 'productos_por_categoria' %}" class="btn">Ver por Categoría</a>
             </div>
         </div>
+        <div class="text-center mt-5">
+            <h2>Categorías</h2>
+            <p><a href="{% url 'productos_por_categoria' id_categoria=1 %}">Ver productos por categoría 1</a></p>
+            <p><a href="{% url 'productos_por_categoria' id_categoria=2 %}">Ver productos por categoría 2</a></p>
+            <!-- Agrega más enlaces de categorías aquí si es necesario -->
+        </div>
+        
+
     </section>
     
 </main>

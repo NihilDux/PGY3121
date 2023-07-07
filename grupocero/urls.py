@@ -31,5 +31,7 @@ urlpatterns = [
 # POR DEFINIR Y COMPLETAR
     path('/', views.productos_por_categoria, name='productos_por_categoria'),
     path('/', views.productos_por_artista, name='productos_por_artista'),
+    path('productos/categoria/<int:id_categoria>/', views.productos_por_categoria, name='productos_por_categoria'),
+    #path('productos/usuario/<str:username>/', views.productos_por_usuario, name='productos_por_usuario'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
